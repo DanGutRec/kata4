@@ -1,5 +1,6 @@
 package software.ulpgc.project.application;
 
+import software.ulpgc.project.Destop;
 import software.ulpgc.project.model.Movie;
 import software.ulpgc.project.viewmode.Histogram;
 import software.ulpgc.project.viewmode.HistogramBuilder;
@@ -14,7 +15,6 @@ public class Main {
                 .addY("counts")
                 .addLegend("Classyfy by genders")
                 .classifyMultiple(Movie::genres);
-        histogram.iterator().forEachRemaining(System.out::println);
-
+        Destop.create().display(histogram).setVisible(true);
     }
 }

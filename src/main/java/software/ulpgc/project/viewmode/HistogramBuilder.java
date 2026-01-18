@@ -35,13 +35,13 @@ public class HistogramBuilder {
         labels.put("legend", legend);
         return this;
     }
-    public <T> Histogram classifySingular(Function<Movie,T> function){
-        Histogram<T> histogram = new Histogram<>(labels);
+    public <T extends Comparable> Histogram classifySingular(Function<Movie,T> function){
+        Histogram histogram = new Histogram<>(labels);
         movies.map(function::apply).forEach(histogram::add);
         return histogram;
     }
-    public <T> Histogram classifyMultiple(Function<Movie,T[]> function){
-        Histogram<Object> histogram = new Histogram<>(labels);
+    public <T extends Comparable> Histogram classifyMultiple(Function<Movie,T[]> function){
+        Histogram histogram = new Histogram<>(labels);
         movies.flatMap(movie -> Arrays.stream(function.apply(movie))).forEach(histogram::add);
         return histogram;
     }
